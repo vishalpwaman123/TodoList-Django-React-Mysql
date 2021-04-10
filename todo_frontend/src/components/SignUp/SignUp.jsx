@@ -66,6 +66,10 @@ export class SignUp extends Component {
     event.preventDefault();
   };
 
+  // handleLoginClick = () => {
+    
+  // }
+
   handledetailButtonVisibility(PasswordMatch, value) {
     console.log("Value :", value);
     if (PasswordMatch === true) {
@@ -313,14 +317,24 @@ export class SignUp extends Component {
                 //   </button>
                 <Button
                   variant="contained"
-                    color="primary"
-                    
+                  color="primary"
                   data-toggle="modal"
                   data-target="#myModal"
                 >
                   Add Detail
                 </Button>
               )}
+              <Button
+                color="primary"
+                style={{
+                  fontFamily: "Montserrat",
+                  textDecoration: "underline",
+                }}
+                href="/SignIn"
+                // onClick={this.handleLoginClick}
+              >
+                Sign In
+              </Button>
               <button
                 onClick={this.handleClick(TransitionUp)}
                 type="button"

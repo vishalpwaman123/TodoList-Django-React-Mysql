@@ -1,0 +1,159 @@
+@mixin flex($display, $justify-content, $align-items, $flex-direction) {
+  display: $display;
+  justify-content: $justify-content;
+  align-items: $align-items;
+  flex-direction: $flex-direction;
+}
+
+@mixin height_width($height, $width) {
+  height: $height;
+  width: $width;
+}
+
+@mixin border($length, $type, $color, $box-sizing) {
+  border: $length $type $color;
+  box-sizing: $box-sizing;
+}
+
+#container {
+  @include height_width(100%, 100%);
+  @include flex(flex, center, center, none);
+
+  #sub_Container2 {
+    @include height_width(90%, 50%);
+    @include border(0.1px, solid, lightgray, border-box);
+    border-radius: 5px;
+    margin: 100px auto;
+    padding: 25px 50px 50px 50px;
+    font-family: "Montserrat", sans-serif;
+    background-color: #fff;
+
+    #Header {
+      font-family: "Montserrat", sans-serif;
+      color: black;
+      height: 25%;
+      #main-Header {
+        font-size: 30px;
+        font-weight: 600;
+        height: 40%;
+      }
+
+      #sub-Header {
+        font-size: 20px;
+        font-weight: 550;
+        height: 60%;
+        @include flex(flex, center, center, none);
+        color: lightgray;
+      }
+    }
+
+    .forms {
+      @include height_width(50%, 100%);
+      //   border: 0.5px solid lightgray;
+      .form-group {
+        @include height_width(20%, 100%);
+        // border: 0.5px solid lightgray;
+        .label {
+          @include height_width(100%, 30%);
+          //   border: 0.5px solid lightgray;
+        }
+        .UserName,
+        .Password {
+          @include height_width(85%, 70%);
+          //   border: 0.5px solid lightgray;
+        }
+      }
+    }
+
+    .buttons {
+      @include height_width(20%, 100%);
+      //   border: 0.5px solid lightgray;
+      margin: 20px 0 0 0;
+      @include flex(flex, space-between, center, -direction);
+    }
+
+    .ForgetPassword {
+      @include height_width(90%, 100%);
+      margin: 5px;
+      border: 0.5px solid lightgray;
+      box-shadow: -1px 0px 6px 1px rgba(0, 0, 0, 0.32);
+      -webkit-box-shadow: -1px 0px 6px 1px rgba(0, 0, 0, 0.32);
+      -moz-box-shadow: -1px 0px 6px 1px rgba(0, 0, 0, 0.32);
+      .Header {
+        @include height_width(20%, 100%);
+        // border: 0.5px solid lightgray;
+        @include flex(flex, center, center, -direction);
+        font-weight: 550;
+      }
+      .Body {
+        @include height_width(55%, 100%);
+        // border: 0.5px solid lightgray;
+        @include flex(flex, -content, -items, -direction);
+        .Label {
+          @include height_width(110%, 30%);
+          //   border: 0.5px solid lightgray;
+          margin: 0px;
+          @include flex(flex, center, center, -direction);
+        }
+        .InputField {
+          @include height_width(95%, 65%);
+          margin: 0 10px;
+          @include flex(flex, center, center, -direction);
+          .IdInput {
+            @include height_width(20%, 100%);
+            // border: 0.5px solid lightgray;
+          }
+        }
+      }
+      .footer {
+        @include height_width(25%, 100%);
+        @include flex(flex, flex-end, center, none);
+        // border: 0.5px solid lightgray;
+        padding-right: 10px;
+      }
+    }
+  }
+}
+
+#container {
+  background: linear-gradient(270deg, #f83bcf, #575afc, #ff9a35, #ff3a3a);
+  background-size: 800% 800%;
+
+  -webkit-animation: AnimationName 30s ease infinite;
+  -moz-animation: AnimationName 30s ease infinite;
+  animation: AnimationName 30s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@-moz-keyframes AnimationName {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes AnimationName {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
