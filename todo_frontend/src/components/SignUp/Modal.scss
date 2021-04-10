@@ -1,0 +1,162 @@
+@mixin height_width($height, $width) {
+  height: $height;
+  width: $width;
+}
+
+@mixin flex($display, $justify-content, $align-items, $flex-direction) {
+  display: $display;
+  justify-content: $justify-content;
+  align-items: $align-items;
+  flex-direction: $flex-direction;
+}
+
+// .modal-Container {
+//     @include height_width(100%, 100%);
+//   #myModal {
+//     @include height_width(100%, 100%);
+//     #modal-Dialog {
+//       @include height_width(100%, 100%);
+#modal-Content {
+  @include height_width(100%, 100%);
+
+  .modal-header {
+    @include height_width(10%, 100%);
+    @include flex(flex, center, center, none);
+  }
+  .modal-body {
+    @include height_width(75%, 100%);
+    @include flex(flex, -content, -items, row);
+    .detailbody {
+      @include height_width(100%, 70%);
+      //   margin: 50px auto;
+      .FullName {
+        @include height_width(15%, 100%);
+        // border: 0.5px solid lightgray;
+        display: flex;
+        margin: 2px;
+        .label {
+          width: 25%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin: 0%;
+          font-weight: 600;
+        }
+        .FullNames {
+          width: 75%;
+          margin: 0px 0 5px 0;
+        }
+      }
+      .AccountType {
+        @include height_width(15%, 100%);
+        // border-bottom: 0.5px solid lightgray;
+        margin: 2px;
+        .fieldSet {
+          display: flex;
+          flex-direction: row;
+          .label {
+            width: 20%;
+            // margin: 0%;
+            font-weight: 600;
+            @include flex(flex, center, center, none);
+          }
+          .Accounts {
+            width: 80%;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            // border-bottom: 1px solid rgba(0, 0, 0, 0.42);
+            margin: 5px 0 5px 0;
+          }
+        }
+      }
+      .MobileNumber {
+        @include height_width(15%, 100%);
+        @include flex(flex, none, none, none);
+        // border: 0.5px solid lightgray;
+        margin: 2px;
+        .label {
+          width: 20%;
+          font-weight: 600;
+          @include flex(flex, center, center, none);
+        }
+        .MobileNumbers {
+          width: 80%;
+          margin: 0 0 5px 0;
+        }
+      }
+      .BOD {
+        @include height_width(15%, 100%);
+        // border: 0.5px solid lightgray;
+        @include flex(flex, none, none, row);
+        margin: 2px;
+        .label {
+          width: 20%;
+          margin: 0px;
+          font-weight: 600;
+          @include flex(flex, center, center, none);
+        }
+        .DateInput {
+          width: 80%;
+          margin: 0px;
+        }
+        .MuiFormControl-marginNormal {
+          margin-top: 10px;
+          margin-bottom: 8px;
+        }
+      }
+      .Gender {
+        @include height_width(15%, 100%);
+        // border: 0.5px solid lightgray;
+        margin: 2px;
+        .fieldSet {
+          display: flex;
+          flex-direction: row;
+          .label {
+            width: 20%;
+            // margin: 0;
+            font-weight: 600;
+            @include flex(flex, center, center, none);
+          }
+          .genders {
+            width: 80%;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            // border-bottom: 1px solid rgba(0, 0, 0, 0.42);
+            margin: 5px 0 5px 0;
+          }
+        }
+      }
+    }
+    .detailImage {
+      @include height_width(100%, 25%);
+      @include flex(flex, center, center, column);
+      border: 0.5px solid lightgray;
+      margin: 5px;
+      .DisplayImage {
+        @include height_width(85%, 90%);
+        border: 0.5px solid lightgray;
+        @include flex(flex, center, center, none);
+        .Image {
+          @include height_width(100%, 100%);
+          border: 0.5px solid lightgray;
+        }
+      }
+      .profileImage {
+        @include height_width(15%, 90%);
+        border: 0.5px solid lightgray;
+        @include flex(flex, center, center, none);
+        .uploadImage {
+          display: none;
+        }
+      }
+    }
+  }
+  .modal-footer {
+    @include height_width(15%, 100%);
+  }
+}
+//     }
+//   }
+// }
