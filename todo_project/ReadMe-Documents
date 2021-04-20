@@ -44,3 +44,12 @@ If want to create Super User
 -----------------------------------------------------
 
 CONCLUSION : Sucessfully Done CRUD API
+
+
+Install Jwt token then 
+
+>pip install pyjwt
+
+INSTALL swagger
+
+>pip install -U drf-yasg
