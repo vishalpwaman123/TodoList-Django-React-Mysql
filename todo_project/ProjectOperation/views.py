@@ -29,6 +29,7 @@ class productonelistView(GenericAPIView):
     id_param_config = openapi.Parameter(
         'id', in_=openapi.IN_QUERY, description='User Id', type=openapi.TYPE_INTEGER) \
 
+
     @swagger_auto_schema(manual_parameters=[id_param_config])
     def get(self, request):
         pk = request.GET.get('id')
@@ -38,7 +39,7 @@ class productonelistView(GenericAPIView):
                 products = product.objects.get(id=pk)
                 print(products)
             except product.DoesNotExist:
-                return Response("Database Empty", status=status.HTTP_404_NOT_FOUND)
+                return Response("Invalid User Id", status=status.HTTP_404_NOT_FOUND)
             serializer = ProductAllDataSerializer(products, many=False)
             return Response(serializer.data, status=status.HTTP_200_OK)
         except Exception:
@@ -73,19 +74,15 @@ class CreateProductView(GenericAPIView):
 class UpdateProductView(GenericAPIView):
 
     serializer_class = UpdateProductSerializer
-    id_param_config = openapi.Parameter(
-        'id', in_=openapi.IN_QUERY, description='User Id', type=openapi.TYPE_INTEGER) \
 
-
-    @swagger_auto_schema(manual_parameters=[id_param_config])
     def patch(self, request):
-        pk = request.GET.get('id')
         try:
+            user_id = request.GET.get('id')
             try:
-                products = product.objects.get(id=pk)
+                products = product.objects.get(id=user_id)
                 # print(products)
             except product.DoesNotExist:
-                return Response("Data Not Found", status=status.HTTP_404_NOT_FOUND)
+                return Response("Invalid User Id", status=status.HTTP_404_NOT_FOUND)
 
             serializer = ProductAllDataSerializer(
                 instance=products, data=request.data)
