@@ -8,8 +8,12 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from django.conf import settings
 from django.contrib import auth
 import jwt
+import json
 from datetime import datetime, timedelta
 from django.utils import timezone
+import math
+import random
+import requests
 from djangoproject_todolist import settings
 # from .models import User
 
@@ -62,3 +66,61 @@ class TokenServices:
         except:
             status = 500
             return status
+
+
+class OTPServices:
+
+    @staticmethod
+    def GenerateOtpNumber():
+        try:
+            digits = "0123456789"
+            otp_variable = ""
+            for i in range(6):
+                otp_variable += digits[math.floor(random.random() * 10)]
+            Data = {
+                "status": 200,
+                "otp": otp_variable
+            }
+            return Data
+        except:
+            Data = {
+                "status": 500,
+                "Message": "Unexcpected otp generated failed"
+            }
+
+            return Data
+
+    @staticmethod
+    def SendOtp(otp_variable, request):
+        try:
+            Message = "Your OTP : "+otp_variable
+            url = str(settings.URL)
+            my_data = {
+                'sender_id': str(settings.SENDER_Id),
+                'message': str(Message),
+                'language': 'english',
+                'route': 'p',
+                'numbers': str(request.data.get("mobileNumber"))
+            }
+            headers = {
+                'authorization': str(settings.AUTHENTICATION_ID),
+                'Content-Type': "application/x-www-form-urlencoded",
+                'Cache-Control': "no-cache"
+            }
+            response = requests.request("POST",
+                                        url,
+                                        data=my_data,
+                                        headers=headers)
+            returned_msg = json.loads(response.text)
+            print(returned_msg['message'])
+            Data = {
+                "status": 200,
+                "Message": returned_msg['message']
+            }
+            return Data
+        except:
+            Data = {
+                "status": 500,
+                "Message": "Unexpected OTP Send Error"
+            }
+            return Data

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import UserAccoutDetail
+from .models import UserAccoutDetail, OtpAuthenticationSystem
 
 
 class SignUpSerializer(serializers.ModelSerializer):
@@ -58,6 +58,34 @@ class LoginSerializers(serializers.ModelSerializer):
 class FetchUserAllData(serializers.ModelSerializer):
     class Meta:
         model = UserAccoutDetail
-        fields = ['username', 'email', 'role',
+        fields = ['id', 'username', 'email', 'role',
                   'mobileNumber', 'user_dateOfBirth', 'gender', 'is_verified', 'is_actived', 'created_at']
- 
+
+
+class OtpVerificationSerializer(serializers.ModelSerializer):
+    mobileNumber = serializers.DecimalField(max_digits=10, decimal_places=0)
+    otp = serializers.DecimalField(max_digits=6, decimal_places=0)
+
+    class Meta:
+        model = UserAccoutDetail
+        fields = ['mobileNumber', 'otp']
+
+
+class GenerateOtpSerializer(serializers.ModelSerializer):
+    mobileNumber = serializers.DecimalField(max_digits=10, decimal_places=0)
+
+    class Meta:
+        model = OtpAuthenticationSystem
+        fields = ['mobileNumber']
+
+
+class OtpDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OtpAuthenticationSystem
+        fields = ['user_id', 'mobileNumber', 'Otp', 'Otp_Created_Count']
+
+
+class FetchAllOtpDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OtpAuthenticationSystem
+        fields = "__all__"

@@ -36,7 +36,7 @@ class productonelistView(GenericAPIView):
         try:
             print(pk)
             try:
-                products = product.objects.get(id=pk)
+                products = product.objects.get(id=pk) 
                 print(products)
             except product.DoesNotExist:
                 return Response("Invalid User Id", status=status.HTTP_404_NOT_FOUND)
